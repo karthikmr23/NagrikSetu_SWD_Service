@@ -1,0 +1,121 @@
+[
+  {
+    "section": "CITIZEN",
+    "test_num": 1,
+    "name": "Citizen Registration with Unique Constraints",
+    "status": "PASS",
+    "details": "Registered citizen: CIT-KA-2026-3F2C5D (Role: CITIZEN)"
+  },
+  {
+    "section": "CITIZEN",
+    "test_num": 2,
+    "name": "Citizen Authentication & Profile Retrieval",
+    "status": "FAIL",
+    "details": "Profile lookup failed: 405"
+  },
+  {
+    "section": "CITIZEN",
+    "test_num": 3,
+    "name": "Welfare Scheme Discovery & Rule Eligibility Evaluation",
+    "status": "PASS",
+    "details": "All 35 schemes discoverable; Scheme 1 eligibility evaluated: LIKELY_ELIGIBLE"
+  },
+  {
+    "section": "CITIZEN",
+    "test_num": 4,
+    "name": "Scheme-Specific Dynamic Form Application Submission",
+    "status": "FAIL",
+    "details": "Dynamic form for Scheme 1 missing: 404"
+  },
+  {
+    "section": "CITIZEN",
+    "test_num": 5,
+    "name": "Official PDF Acknowledgement Generation",
+    "status": "PASS",
+    "details": "PDF acknowledgement generated: 3432 bytes (Starts with %PDF)"
+  },
+  {
+    "section": "WELFARE_ADMIN",
+    "test_num": 6,
+    "name": "Application Scrutiny & Sanction Decision Lifecycle",
+    "status": "PASS",
+    "details": "Application 35 transitioned: UNDER_REVIEW -> APPROVED with INR 25,000 sanction"
+  },
+  {
+    "section": "WELFARE_ADMIN",
+    "test_num": 7,
+    "name": "Department Announcement Broadcast & Citizen Dispatch",
+    "status": "FAIL",
+    "details": "Announcement failed: 404 - {\"detail\":\"Not Found\"}"
+  },
+  {
+    "section": "WELFARE_ADMIN",
+    "test_num": 8,
+    "name": "Dynamic Form Builder Versioning & Field Persistence",
+    "status": "FAIL",
+    "details": "Form builder failed: 404 - {\"detail\":\"Not Found\"}"
+  },
+  {
+    "section": "WELFARE_ADMIN",
+    "test_num": 9,
+    "name": "Grievance Redressal Lifecycle (Submission -> Resolution)",
+    "status": "PASS",
+    "details": "Grievance GRV-SWD-2026-B9CB98 submitted and resolved with official response"
+  },
+  {
+    "section": "SYSTEM",
+    "test_num": 10,
+    "name": "Real Notification Stream & Read/Unread State Tracking",
+    "status": "PASS",
+    "details": "Total notifications: 50; unread before: 4, unread after mark-all-read: 0"
+  },
+  {
+    "section": "SYSTEM",
+    "test_num": 11,
+    "name": "Citizen Dashboard Dynamic Statistics Calculation",
+    "status": "PASS",
+    "details": "Dashboard live query: 24 applications (12 approved), 22 grievances (1 active)"
+  },
+  {
+    "section": "SYSTEM",
+    "test_num": 12,
+    "name": "Cross-Citizen Data Isolation & Authorization Guard",
+    "status": "FAIL",
+    "details": "Expected 403, got 200"
+  },
+  {
+    "section": "SYSTEM",
+    "test_num": 13,
+    "name": "Universal 35 Scheme Forms & Documents Preservation",
+    "status": "FAIL",
+    "details": "Missing forms for scheme IDs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]"
+  },
+  {
+    "section": "PLATFORM_ADMIN",
+    "test_num": 14,
+    "name": "Platform Admin System Monitoring & Metrics",
+    "status": "FAIL",
+    "details": "Platform admin stats failed: 200"
+  },
+  {
+    "section": "PLATFORM_ADMIN",
+    "test_num": 15,
+    "name": "Platform User Monitoring & Account Registry",
+    "status": "FAIL",
+    "details": "User monitoring failed: 404"
+  },
+  {
+    "section": "PLATFORM_ADMIN",
+    "test_num": 16,
+    "name": "Security Audit Trail & Event Monitoring Stream",
+    "status": "FAIL",
+    "details": "Audit logs failed: 404"
+  },
+  {
+    "section": "PLATFORM_ADMIN",
+    "test_num": 17,
+    "name": "Platform Admin View-Only Enforcement (HTTP 403 Guards)",
+    "status": "FAIL",
+    "details": "One or more mutations allowed: r1=422, r2=200, r3=404, r4=404"
+  }
+]
