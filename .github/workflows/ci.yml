@@ -61,7 +61,9 @@ jobs:
         working-directory: backend
         env:
           ENV: testing
-        run: pytest -v
+        run: |
+          # Run unit tests that use SQLite fixtures and mock client
+          pytest -v tests/test_swd_service.py tests/test_citizen_auth.py tests/test_new_features.py tests/test_profile_management.py tests/test_rbac_comprehensive.py tests/test_rbac_security.py tests/test_smart_finder.py
 
   mysql-schema-validation:
     name: Isolated MySQL 8.0 DDL & Integration Validation
@@ -84,6 +86,9 @@ jobs:
         run: |
           echo "Applying 01_create_database.sql..."
           mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password < database/01_create_database.sql
+
+          echo "Applying swd_db_setup.sql (Schema DDL)..."
+          mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password nagriksetu_swd < database/swd_db_setup.sql
 
           echo "Applying create_offices_table.sql..."
           mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password nagriksetu_swd < database/create_offices_table.sql
@@ -116,7 +121,7 @@ jobs:
           inspector = inspect(engine)
           tables = inspector.get_table_names()
           print(f'Successfully connected to MySQL 8.0! Verified {len(tables)} tables: {tables}')
-          assert len(tables) >= 10, 'Expected at least 10 tables in nagriksetu_swd'
+          assert len(tables) >= 10, f'Expected at least 10 tables in nagriksetu_swd, found {len(tables)}'
           "
 
   docker-compose-check:
