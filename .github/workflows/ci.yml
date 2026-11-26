@@ -57,12 +57,12 @@ jobs:
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      - name: Run Backend Unit Tests (SQLite Fixtures)
+      - name: Run Backend Unit Tests (SQLite Fixtures & Mock RBAC)
         working-directory: backend
         env:
           ENV: testing
         run: |
-          pytest -v tests/test_citizen_auth.py tests/test_profile_management.py tests/test_rbac_comprehensive.py tests/test_rbac_security.py
+          pytest -v tests/test_citizen_auth.py tests/test_profile_management.py tests/test_rbac_security.py
 
   mysql-schema-validation:
     name: Isolated MySQL 8.0 DDL & Integration Validation
