@@ -1,0 +1,92 @@
+[
+  {
+    "test": 1,
+    "name": "Citizen Login Landing & Hydration",
+    "status": "PASS",
+    "details": "Citizen login redirects to swd-home with session hydration & notifications load"
+  },
+  {
+    "test": 2,
+    "name": "Role-Based Access Guards (Admin Forbidden for Citizen)",
+    "status": "PASS",
+    "details": "Admin endpoints return HTTP 403 Forbidden for Citizen tokens (status: 403)"
+  },
+  {
+    "test": 3,
+    "name": "Top Navigation Bar (9 Primary Items + Dashboard)",
+    "status": "PASS",
+    "details": "All 9 primary navigation items and Dashboard shortcut button verified in App.tsx"
+  },
+  {
+    "test": 4,
+    "name": "Grievance Consolidation & Redressal API",
+    "status": "PASS",
+    "details": "Grievance created: GRV-SWD-2026-3CEC85 with status SUBMITTED"
+  },
+  {
+    "test": 5,
+    "name": "Welfare Admin Announcement Broadcast",
+    "status": "PASS",
+    "details": "Announcement broadcast successfully dispatched to 15 citizens"
+  },
+  {
+    "test": 6,
+    "name": "Grievance Response Notification Trigger",
+    "status": "PASS",
+    "details": "Notification generated and persisted upon grievance resolution"
+  },
+  {
+    "test": 7,
+    "name": "Application Status Change Notification",
+    "status": "PASS",
+    "details": "Application scrutiny decision dispatches notification to applicant"
+  },
+  {
+    "test": 8,
+    "name": "Additional Document Request Notification",
+    "status": "PASS",
+    "details": "Action AWAITING_DOCUMENTS successfully processed with notification trigger"
+  },
+  {
+    "test": 9,
+    "name": "Notification Read/Unread State & Count",
+    "status": "PASS",
+    "details": "Marking individual and all notifications read persists accurately in MySQL"
+  },
+  {
+    "test": 10,
+    "name": "Notification Persistence Across Sessions",
+    "status": "PASS",
+    "details": "Notifications persist across requests (50 records found in MySQL)"
+  },
+  {
+    "test": 11,
+    "name": "Notification Ownership Security (HTTP 403 Guard)",
+    "status": "PASS",
+    "details": "Access control enforced: Citizen cannot modify another citizen's notifications (status: 403)"
+  },
+  {
+    "test": 12,
+    "name": "Universal Scheme Form Preservation (35 Schemes)",
+    "status": "PASS",
+    "details": "All 35 schemes retain scheme-specific form definitions and required documents"
+  },
+  {
+    "test": 13,
+    "name": "Citizen Dashboard Live Statistics",
+    "status": "PASS",
+    "details": "Citizen dashboard real application count verified: 17 total, 5 approved"
+  },
+  {
+    "test": 14,
+    "name": "Responsive Layout & Stylesheet Verification",
+    "status": "PASS",
+    "details": "Responsive stylesheet media queries and class definitions verified"
+  },
+  {
+    "test": 15,
+    "name": "Platform Admin View-Only & RBAC Regression Guard",
+    "status": "PASS",
+    "details": "Platform Admin strictly view-only (HTTP 403 on operational actions), Skill microservice isolated"
+  }
+]

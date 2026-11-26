@@ -1,0 +1,43 @@
+# Environment files (preserve local credentials)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Sensitive Database Dumps (Option A: Exclude personal data and password hashes)
+database/nagriksetu_swd_latest_dump.sql
+*.dump
+*.sql.gz
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+*.db
+test_*.db
+
+# Node & Frontend Build Outputs
+node_modules/
+dist/
+dist-ssr/
+*.local
+.npm
+.vite/
+
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker local data overrides
+docker-data/

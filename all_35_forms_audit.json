@@ -1,0 +1,2127 @@
+[
+  {
+    "scheme_id": 1,
+    "scheme_code": "KAR-SSP-POSTMATRIC",
+    "scheme_name": "Post-Matric Scholarship for SC/ST and Backward Classes Students",
+    "department": "Social Welfare Department, Government of Karnataka",
+    "category_id": 1,
+    "form_id": 1,
+    "form_title": "Post-Matric Scholarship Application Form (SSP Integration)",
+    "version": 1,
+    "fields_count": 8,
+    "fields": [
+      {
+        "name": "student_admission_number",
+        "label": "College / University Admission Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "institution_name",
+        "label": "Current Educational Institution Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "course_name",
+        "label": "Course of Study",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "current_academic_year",
+        "label": "Academic Year",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "previous_year_marks_percentage",
+        "label": "Previous Academic Year Aggregate Marks (%)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "hostel_stay_type",
+        "label": "Hostel / Accommodation Status",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "ssp_student_id",
+        "label": "State Scholarship Portal (SSP) ID (If previously registered)",
+        "type": "text",
+        "required": false
+      },
+      {
+        "name": "declaration_non_receipt",
+        "label": "I hereby declare that I am not receiving any dual scholarship from any other public department.",
+        "type": "checkbox",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "COLLEGE_BONAFIDE",
+        "name": "College Bonafide & Fee Structure Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Revenue Department Income Certificate (RD Number)",
+        "mandatory": true
+      },
+      {
+        "code": "CASTE_CERT",
+        "name": "Caste Certificate (SC/ST/OBC)",
+        "mandatory": true
+      },
+      {
+        "code": "PREV_MARKSHEET",
+        "name": "Previous Year Qualifying Examination Marksheet",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 2,
+    "scheme_code": "KAR-DIVYANGJAN-PENSION",
+    "scheme_name": "Disability Maintenance & Assistive Aid Grant",
+    "department": "Directorate for the Empowerment of Differently Abled and Senior Citizens",
+    "category_id": 2,
+    "form_id": 2,
+    "form_title": "Disability Maintenance & Assistive Aid Grant Application",
+    "version": 1,
+    "fields_count": 6,
+    "fields": [
+      {
+        "name": "udid_card_number",
+        "label": "Unique Disability ID (UDID) / Sadarem Certificate No.",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "disability_type",
+        "label": "Type of Benchmark Disability",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "disability_severity_percentage",
+        "label": "Disability Severity Percentage (%)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "assistive_equipment_requested",
+        "label": "Specific Assistive Equipment / Maintenance Required",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "guardian_or_caretaker_name",
+        "label": "Nominated Caretaker / Guardian Name (If severe disability)",
+        "type": "text",
+        "required": false
+      },
+      {
+        "name": "medical_board_authority",
+        "label": "District Medical Board / Hospital Name",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "UDID_CARD",
+        "name": "Unique Disability ID (UDID) Card or Medical Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Tahsil Office Income Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "AADHAAR_CARD",
+        "name": "Aadhaar Card Copy",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 3,
+    "scheme_code": "KAR-SANDHYA-SURAKSHA",
+    "scheme_name": "Sandhya Suraksha Senior Citizen Pension Scheme",
+    "department": "Revenue Department (Social Security and Pensions), Government of Karnataka",
+    "category_id": 3,
+    "form_id": 3,
+    "form_title": "Sandhya Suraksha Senior Citizen Pension Application",
+    "version": 1,
+    "fields_count": 5,
+    "fields": [
+      {
+        "name": "senior_age_proof_type",
+        "label": "Proof of Age Document",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "applicant_occupation_history",
+        "label": "Primary Prior Occupation / Livelihood",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "household_joint_income",
+        "label": "Total Combined Household Annual Income (Rs.)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "existing_pension_status",
+        "label": "Are you currently receiving any other pension (EPFO/Central/State)?",
+        "type": "radio",
+        "required": true
+      },
+      {
+        "name": "bank_passbook_branch",
+        "label": "Bank Name and Branch Location",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AGE_PROOF",
+        "name": "Age Proof (Voter ID / Birth Certificate / School LC)",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Family Income Certificate under INR 32,000",
+        "mandatory": true
+      },
+      {
+        "code": "RESIDENCE_PROOF",
+        "name": "Karnataka Domicile / Residence Proof (min 6 years)",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 4,
+    "scheme_code": "KAR-INTERCASTE-MARRIAGE",
+    "scheme_name": "Financial Incentive Scheme for Inter-Caste Marriages",
+    "department": "Social Welfare Department, Government of Karnataka",
+    "category_id": 4,
+    "form_id": 4,
+    "form_title": "Inter-Caste Marriage Incentive Grant Application",
+    "version": 1,
+    "fields_count": 7,
+    "fields": [
+      {
+        "name": "spouse_full_name",
+        "label": "Spouse's Full Legal Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "spouse_social_category",
+        "label": "Spouse's Social / Caste Category",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "marriage_registration_number",
+        "label": "Sub-Registrar Marriage Certificate Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "marriage_date",
+        "label": "Date of Marriage Registration",
+        "type": "date",
+        "required": true
+      },
+      {
+        "name": "sub_registrar_office_location",
+        "label": "Sub-Registrar Jurisdiction Office Location",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "joint_bank_account_number",
+        "label": "Aadhaar-Linked Joint Bank Account Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "joint_bank_ifsc",
+        "label": "Joint Bank IFSC Code",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "MARRIAGE_CERT",
+        "name": "Sub-Registrar Marriage Registration Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "CASTE_CERT_BOTH",
+        "name": "Caste Certificates of Both Bride and Groom",
+        "mandatory": true
+      },
+      {
+        "code": "FIRST_MARRIAGE_AFFIDAVIT",
+        "name": "First Marriage Notarized Affidavit",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 5,
+    "scheme_code": "KAR-FLAG-GRUHA-LAKSHMI",
+    "scheme_name": "Gruha Lakshmi Scheme",
+    "department": "Department of Women and Child Development, Government of Karnataka",
+    "category_id": 5,
+    "form_id": 5,
+    "form_title": "Gruha Lakshmi Scheme Registration Dossier",
+    "version": 1,
+    "fields_count": 6,
+    "fields": [
+      {
+        "name": "ration_card_number",
+        "label": "BPL / AAY / APL Ration Card (RC) Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "ration_card_type",
+        "label": "Ration Card Type",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "female_head_name_on_rc",
+        "label": "Name of Female Head of Family (as specified on RC)",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "husband_aadhaar_number",
+        "label": "Husband's Aadhaar Number (if married)",
+        "type": "text",
+        "required": false
+      },
+      {
+        "name": "income_tax_payer_declaration",
+        "label": "Do you or your spouse pay Income Tax (IT) or file GST returns?",
+        "type": "radio",
+        "required": true
+      },
+      {
+        "name": "preferred_disbursement_mode",
+        "label": "Preferred DBT Payment Method",
+        "type": "select",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "RATION_CARD",
+        "name": "BPL / Antyodaya (AAY) / APL Ration Card Copy",
+        "mandatory": true
+      },
+      {
+        "code": "WOMAN_AADHAAR",
+        "name": "Aadhaar Card of Woman Head of Household",
+        "mandatory": true
+      },
+      {
+        "code": "HUSBAND_AADHAAR",
+        "name": "Aadhaar Card of Spouse (if married)",
+        "mandatory": false
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "NPCI-Seeded Bank Passbook Copy",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 6,
+    "scheme_code": "KAR-FLAG-GRUHA-JYOTHI",
+    "scheme_name": "Gruha Jyothi Scheme",
+    "department": "Energy Department, Government of Karnataka",
+    "category_id": 5,
+    "form_id": 6,
+    "form_title": "Gruha Jyothi Free Electricity Scheme Enrolment",
+    "version": 1,
+    "fields_count": 5,
+    "fields": [
+      {
+        "name": "escom_name",
+        "label": "Electricity Supply Company (ESCOM)",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "consumer_account_id",
+        "label": "Consumer Account ID / Account ID on Electricity Bill",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "meter_number",
+        "label": "Physical Electricity Meter Serial Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "residence_tenure_type",
+        "label": "Premises Occupancy Status",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "average_monthly_consumption_units",
+        "label": "Average Monthly Consumption (Units / kWh)",
+        "type": "number",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "ELECTRICITY_BILL",
+        "name": "Latest Domestic Electricity Bill with Consumer Account ID",
+        "mandatory": true
+      },
+      {
+        "code": "AADHAAR_CARD",
+        "name": "Aadhaar Card of Resident / Tenancy Proof",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 7,
+    "scheme_code": "KAR-FLAG-SHAKTI",
+    "scheme_name": "Shakti Free Bus Travel Scheme",
+    "department": "Transport Department, Government of Karnataka",
+    "category_id": 5,
+    "form_id": 7,
+    "form_title": "Apply for Welfare Scheme: Shakti Free Bus Travel Scheme",
+    "version": 1,
+    "fields_count": 7,
+    "fields": [
+      {
+        "name": "applicant_full_name",
+        "label": "Applicant Full Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "mobile_phone_number",
+        "label": "Mobile Phone Number",
+        "type": "mobile",
+        "required": true
+      },
+      {
+        "name": "permanent_residence_district",
+        "label": "Permanent Residence District",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "social_category",
+        "label": "Social Category",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "aadhaar_seeded_bank_account",
+        "label": "Aadhaar-Seeded Bank Account Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "bank_ifsc_code",
+        "label": "Bank IFSC Code",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "declaration_consent",
+        "label": "I declare that I am a bonafide resident of Karnataka and all particulars submitted are truthful.",
+        "type": "checkbox",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "KARNATAKA_ID",
+        "name": "Karnataka Resident Photo ID (Aadhaar / EPIC Voter ID)",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 8,
+    "scheme_code": "KAR-FLAG-ANNA-BHAGYA",
+    "scheme_name": "Anna Bhagya Scheme",
+    "department": "Food, Civil Supplies and Consumer Affairs Department",
+    "category_id": 5,
+    "form_id": 8,
+    "form_title": "Anna Bhagya Additional Food Grain / Cash-in-Lieu Subsidy Enrolment",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "ration_card_number",
+        "label": "Ration Card (RC) Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "total_family_members",
+        "label": "Number of Listed Family Members on Card",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "fair_price_shop_number",
+        "label": "Jurisdictional Fair Price Shop (FPS) Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "dbt_active_bank_account",
+        "label": "Aadhaar NPCI-Mapped Bank Account Number (Head of Family)",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "RATION_CARD",
+        "name": "Active BPL / Antyodaya Ration Card",
+        "mandatory": true
+      },
+      {
+        "code": "AADHAAR_CARD",
+        "name": "Aadhaar Linked to PDS Database",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 9,
+    "scheme_code": "KAR-FLAG-YUVA-NIDHI",
+    "scheme_name": "Yuva Nidhi & Yuvanidhi Plus Scheme",
+    "department": "Skill Development, Entrepreneurship and Livelihood Department",
+    "category_id": 5,
+    "form_id": 9,
+    "form_title": "Yuva Nidhi Unemployment Assistance & Skill Training Enrolment",
+    "version": 1,
+    "fields_count": 6,
+    "fields": [
+      {
+        "name": "degree_type",
+        "label": "Educational Qualification Completed",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "graduation_passing_year",
+        "label": "Passing Out Year",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "university_registration_number",
+        "label": "Degree / Diploma Roll / Registration Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "months_unemployed",
+        "label": "Duration of Unemployment Post Graduation (Months)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "epfo_esic_declaration",
+        "label": "Are you registered with EPFO or receiving income from government/private job?",
+        "type": "radio",
+        "required": true
+      },
+      {
+        "name": "skill_training_preference",
+        "label": "Preferred Skill Enhancement Training Domain",
+        "type": "select",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "DEGREE_CERT",
+        "name": "Degree / Diploma Passing Certificate (Karnataka Institutions)",
+        "mandatory": true
+      },
+      {
+        "code": "MARKS_CARD",
+        "name": "Final Year Consolidated Marks Card",
+        "mandatory": true
+      },
+      {
+        "code": "UNEMPLOYMENT_AFFIDAVIT",
+        "name": "Self-Declaration Affidavit of Unemployment",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 10,
+    "scheme_code": "KAR-WCM-UDYOGINI",
+    "scheme_name": "Udyogini Scheme",
+    "department": "Karnataka State Women's Development Corporation (KSWDC)",
+    "category_id": 6,
+    "form_id": 10,
+    "form_title": "Udyogini Women Entrepreneurship Subsidized Loan Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "proposed_business_activity",
+        "label": "Proposed Trade / Micro-Enterprise Activity",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "total_project_cost",
+        "label": "Estimated Total Capital Cost (Rs.)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "subsidy_category_claim",
+        "label": "Target Social Category for Subsidy %",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "financing_bank_preference",
+        "label": "Preferred Financing Commercial / Grameena Bank",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 11,
+    "scheme_code": "KAR-WCM-BHAGYALAKSHMI",
+    "scheme_name": "Bhagyalakshmi Scheme",
+    "department": "Department of Women and Child Development, Government of Karnataka",
+    "category_id": 6,
+    "form_id": 11,
+    "form_title": "Bhagyalakshmi Girl Child Bond & Insurance Enrolment",
+    "version": 1,
+    "fields_count": 5,
+    "fields": [
+      {
+        "name": "child_birth_certificate_number",
+        "label": "Girl Child Birth Registration Certificate Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "child_date_of_birth",
+        "label": "Child Date of Birth",
+        "type": "date",
+        "required": true
+      },
+      {
+        "name": "birth_order",
+        "label": "Child Birth Order in Family",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "mother_aadhaar_number",
+        "label": "Mother's Aadhaar Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "sukanya_samriddhi_or_lic_account",
+        "label": "Postal Sukanya Samriddhi / Departmental LIC Bond Number",
+        "type": "text",
+        "required": false
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 12,
+    "scheme_code": "KAR-WCM-MATRU-POORNA",
+    "scheme_name": "Matru Poorna Scheme",
+    "department": "Department of Women and Child Development, Government of Karnataka",
+    "category_id": 6,
+    "form_id": 12,
+    "form_title": "Matru Poorna Anganwadi Hot-Cooked Nutrition Meal Enrolment",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "mcts_or_rch_id",
+        "label": "Mother and Child Tracking System (MCTS) / RCH ID",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "anganwadi_centre_code",
+        "label": "Local Anganwadi Centre (AWC) Name / Code",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "current_status",
+        "label": "Beneficiary Status",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "expected_date_of_delivery",
+        "label": "Expected Delivery Date (EDD) / Actual Delivery Date",
+        "type": "date",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 13,
+    "scheme_code": "KAR-WCM-THAYI-BHAGYA",
+    "scheme_name": "Thayi Bhagya & Prasoothi Araike Scheme",
+    "department": "Department of Health and Family Welfare, Government of Karnataka",
+    "category_id": 6,
+    "form_id": 13,
+    "form_title": "Thayi Bhagya Institutional Delivery Cash Assistance Form",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "thayi_card_number",
+        "label": "Thayi Card (Mother Card) Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "hospital_type_of_delivery",
+        "label": "Institutional Delivery Facility",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "hospital_name",
+        "label": "Healthcare Institution Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "asha_worker_name",
+        "label": "Attending ASHA Worker Name",
+        "type": "text",
+        "required": false
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 14,
+    "scheme_code": "KAR-WCM-MADILU-KIT",
+    "scheme_name": "Madilu Kit Scheme",
+    "department": "Department of Health and Family Welfare, Government of Karnataka",
+    "category_id": 6,
+    "form_id": 14,
+    "form_title": "Madilu Post-Delivery Mother & Newborn Care Kit Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "delivery_discharge_certificate_no",
+        "label": "Institutional Delivery Discharge Summary Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "delivery_date",
+        "label": "Date of Child Delivery",
+        "type": "date",
+        "required": true
+      },
+      {
+        "name": "delivering_hospital_name",
+        "label": "Delivering Government Facility Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "kit_dispatch_preference",
+        "label": "Collection / Delivery Preference",
+        "type": "select",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 15,
+    "scheme_code": "KAR-WCM-SANTHWANA",
+    "scheme_name": "Santhwana Scheme",
+    "department": "Karnataka State Women's Development Corporation (KSWDC)",
+    "category_id": 6,
+    "form_id": 15,
+    "form_title": "Santhwana Women in Distress Relief & Legal Aid Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "incident_category",
+        "label": "Nature of Assistance Required",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "fir_or_complaint_number",
+        "label": "Police FIR / Station Diary / Protection Officer Report No.",
+        "type": "text",
+        "required": false
+      },
+      {
+        "name": "immediate_shelter_needed",
+        "label": "Immediate Shelter & Protection Home Needed?",
+        "type": "radio",
+        "required": true
+      },
+      {
+        "name": "case_narrative_summary",
+        "label": "Confidential Summary of Incident & Relief Needed",
+        "type": "textarea",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 16,
+    "scheme_code": "KAR-WCM-DHANASHREE-CHETANA",
+    "scheme_name": "Dhanashree & Chetana Scheme",
+    "department": "Karnataka State Women's Development Corporation (KSWDC)",
+    "category_id": 6,
+    "form_id": 16,
+    "form_title": "Dhanashree & Chetana Economic Rehabilitation Application",
+    "version": 1,
+    "fields_count": 3,
+    "fields": [
+      {
+        "name": "rehabilitation_stream",
+        "label": "Target Assistance Stream",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "self_employment_plan",
+        "label": "Chosen Micro-Enterprise Skill Activity",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "counselor_or_ngo_reference",
+        "label": "Supporting NGO / District AIDS Prevention Society (DAPCU) Reference",
+        "type": "text",
+        "required": false
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 17,
+    "scheme_code": "KAR-AGR-RAITHA-VIDYA-NIDHI",
+    "scheme_name": "Chief Minister Raitha Vidya Nidhi",
+    "department": "Agriculture Department, Government of Karnataka",
+    "category_id": 7,
+    "form_id": 17,
+    "form_title": "Chief Minister Raitha Vidya Nidhi Student Scholarship Form",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "farmer_parent_fid",
+        "label": "Farmer Registration ID (FRUITS FID Number)",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "rtc_pahani_survey_number",
+        "label": "Land Survey Number / RTC Pahani Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "student_admission_number",
+        "label": "Student College Roll Number / UUCMS ID",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "course_tier",
+        "label": "Course Category Enrolled",
+        "type": "select",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 18,
+    "scheme_code": "KAR-AGR-GANGA-KALYANA",
+    "scheme_name": "Ganga Kalyana Scheme",
+    "department": "Social Welfare Department & Backward Classes Welfare Department",
+    "category_id": 7,
+    "form_id": 18,
+    "form_title": "Ganga Kalyana Agricultural Irrigation Borewell Application",
+    "version": 1,
+    "fields_count": 6,
+    "fields": [
+      {
+        "name": "fruits_farmer_fid",
+        "label": "Farmer Registration ID (FID)",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "land_holding_acres",
+        "label": "Total Combined Land Holding (Acres)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "land_survey_numbers",
+        "label": "Revenue Land Survey / Hissa Numbers",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "village_name",
+        "label": "Village and Gram Panchayat",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "water_source_assessment",
+        "label": "Hydrogeological Feasibility / Ground Water Zone Status",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "escom_subdivision",
+        "label": "Jurisdictional ESCOM Sub-Division for Power Connection",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "RTC_PAHANI",
+        "name": "Land Ownership Records (RTC / Pahani Proof - Min 1 to 5 Acres)",
+        "mandatory": true
+      },
+      {
+        "code": "CASTE_CERT",
+        "name": "Small / Marginal SC/ST/Backward Classes Farmer Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "GROUNDWATER_SURVEY",
+        "name": "Hydrogeological Feasibility Survey Certificate",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 19,
+    "scheme_code": "KAR-AGR-KRISHI-BHAGYA",
+    "scheme_name": "Krishi Bhagya Scheme",
+    "department": "Agriculture Department, Government of Karnataka",
+    "category_id": 7,
+    "form_id": 19,
+    "form_title": "Krishi Bhagya Rainwater Harvesting Farm Pond & Polyhouse Subsidy",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "agro_climatic_zone",
+        "label": "Rainfed Dryland Agricultural Zone",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "infrastructure_component_requested",
+        "label": "Irrigation Package Component Requested",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "dryland_holding_acres",
+        "label": "Dryland Farming Area (Acres)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "fruits_id",
+        "label": "FRUITS Farmer Registration Number",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 20,
+    "scheme_code": "KAR-AGR-MICRO-IRRIGATION",
+    "scheme_name": "Farmer Irrigation Assistance Scheme (Micro-Irrigation)",
+    "department": "Horticulture Department & Agriculture Department",
+    "category_id": 7,
+    "form_id": 20,
+    "form_title": "Micro-Irrigation (Drip & Sprinkler) 90% Subsidy Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "crop_type",
+        "label": "Principal Crop Cultivated",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "irrigation_technology_type",
+        "label": "Selected Micro-Irrigation System",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "existing_water_source",
+        "label": "Available Perennial Water Source",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "fruits_farmer_fid",
+        "label": "FRUITS Farmer ID",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 21,
+    "scheme_code": "KAR-AGR-KRUSHI-ARANYA",
+    "scheme_name": "Krushi Aranya Protsaha Yojane (KAPY)",
+    "department": "Forest, Ecology and Environment Department, Government of Karnataka",
+    "category_id": 7,
+    "form_id": 21,
+    "form_title": "Krushi Aranya Protsaha Yojane Agro-Forestry Seedling Subsidy",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "seedling_species_requested",
+        "label": "Preferred Tree Sapling Varieties",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "number_of_seedlings_to_plant",
+        "label": "Total Number of Seedlings Planned",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "plantation_model",
+        "label": "Plantation Method",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "range_forest_office",
+        "label": "Nearest Range Forest Office (RFO) Jurisdiction",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 22,
+    "scheme_code": "KAR-AGR-YESHASVINI",
+    "scheme_name": "Yeshasvini Cooperative Health Insurance Scheme",
+    "department": "Cooperation Department, Government of Karnataka",
+    "category_id": 7,
+    "form_id": 22,
+    "form_title": "Yeshasvini Cooperative Health Card Enrolment Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "cooperative_society_name",
+        "label": "Primary Agriculture Credit Cooperative Society (PACS) / Milk Union Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "society_membership_number",
+        "label": "Cooperative Society Membership Share Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "family_head_designation",
+        "label": "Family Type",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "number_of_dependent_beneficiaries",
+        "label": "Number of Enrolled Dependent Family Members",
+        "type": "number",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 23,
+    "scheme_code": "KAR-AGR-RAITHA-SIRI",
+    "scheme_name": "Raitha Siri Scheme",
+    "department": "Agriculture Department, Government of Karnataka",
+    "category_id": 7,
+    "form_id": 23,
+    "form_title": "Raitha Siri Millet Farmers Direct Cash Incentive Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "millet_variety_cultivated",
+        "label": "Siri Dhanya Millet Type",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "millet_cultivation_area_hectares",
+        "label": "Cultivated Area under Millets (Hectares)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "crop_survey_verification_code",
+        "label": "Karnataka Digital Crop Survey Farmer Verification ID",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "fruits_farmer_fid",
+        "label": "FRUITS ID Number",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 24,
+    "scheme_code": "KAR-EDU-ARIVU-LOAN",
+    "scheme_name": "Arivu Education Loan Scheme",
+    "department": "Minorities Welfare Department & Backward Classes Welfare Department",
+    "category_id": 8,
+    "form_id": 24,
+    "form_title": "Arivu Minority Education Loan Scheme Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "cet_neet_roll_number",
+        "label": "KEA CET / NEET / PGCET Hall Ticket / Rank Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "allotted_college_name",
+        "label": "KEA Allotted Institution Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "annual_course_tuition_fee",
+        "label": "Annual Approved Tuition Fee Amount (Rs.)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "minority_community_type",
+        "label": "Religious Minority Classification",
+        "type": "select",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 25,
+    "scheme_code": "KAR-EDU-VIDYASIRI",
+    "scheme_name": "Vidyasiri (Food & Accommodation Stipend)",
+    "department": "Backward Classes Welfare Department, Government of Karnataka",
+    "category_id": 8,
+    "form_id": 25,
+    "form_title": "Vidyasiri Food & Accommodation Stipend Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "hostel_non_availability_certificate",
+        "label": "Taluk BCM Office Hostel Non-Availability Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "private_stay_rental_address",
+        "label": "Current Rented Room / Paying Guest Address",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "name": "distance_from_home_to_college_km",
+        "label": "Distance from Native Town to College (KM)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "college_attendance_percentage",
+        "label": "Current Semester Attendance (%)",
+        "type": "number",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 26,
+    "scheme_code": "KAR-EDU-PRABHUDDHA-AMBEDKAR",
+    "scheme_name": "Prabuddha & Dr. B.R. Ambedkar Overseas Scholarships",
+    "department": "Social Welfare Department, Government of Karnataka",
+    "category_id": 4,
+    "form_id": 26,
+    "form_title": "Prabuddha Overseas Education Scholarship Application",
+    "version": 1,
+    "fields_count": 5,
+    "fields": [
+      {
+        "name": "foreign_university_name",
+        "label": "Admitted Global University Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "country_of_study",
+        "label": "Destination Country",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "degree_level",
+        "label": "Level of Higher Education",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "qs_or_times_world_rank",
+        "label": "University Global QS / Times World Ranking",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "passport_number",
+        "label": "Valid Indian Passport Number",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 27,
+    "scheme_code": "KAR-EDU-ELEVATE",
+    "scheme_name": "ELEVATE & ELEVATE NxT Startup Grants",
+    "department": "Department of Electronics, IT, Bt and S&T, Government of Karnataka",
+    "category_id": 1,
+    "form_id": 27,
+    "form_title": "ELEVATE Tech Startup Idea Grant Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "startup_entity_name",
+        "label": "Registered Startup / Enterprise Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "dpiit_or_startup_karnataka_id",
+        "label": "DPIIT Recognition Number / Startup Karnataka Reg ID",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "innovation_domain",
+        "label": "Deep-Tech / Innovation Vertical",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "patent_or_prototype_status",
+        "label": "Product Stage",
+        "type": "select",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 28,
+    "scheme_code": "KAR-EDU-RAJIV-GANDHI-ENTREPRENEUR",
+    "scheme_name": "Rajiv Gandhi Entrepreneurship Program",
+    "department": "Department of Electronics, IT, Bt and S&T, Government of Karnataka",
+    "category_id": 1,
+    "form_id": 28,
+    "form_title": "Rajiv Gandhi Entrepreneurship Incubation Fellow Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "engineering_college_name",
+        "label": "College Where Degree Completed",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "technical_specialization",
+        "label": "Engineering Branch / Domain",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "proposed_venture_concept",
+        "label": "High-Level Product / Venture Abstract",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "name": "host_incubation_centre",
+        "label": "Preferred K-tech Incubation Center",
+        "type": "select",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 29,
+    "scheme_code": "KAR-LAB-KBOCWWB",
+    "scheme_name": "Karnataka Construction Workers (KBOCWWB) Schemes",
+    "department": "Labour Department, Government of Karnataka",
+    "category_id": 9,
+    "form_id": 29,
+    "form_title": "Building & Other Construction Workers (KBOCWWB) Welfare Claim",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "kbocwwb_smart_card_no",
+        "label": "KBOCWWB Construction Worker Labour Smart Card Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "trade_occupation",
+        "label": "Construction Trade Skill",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "specific_welfare_benefit_claimed",
+        "label": "Benefit Claimed under Board",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "employer_contractor_details",
+        "label": "Principal Contractor / Construction Site Details",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 30,
+    "scheme_code": "KAR-LAB-GIG-WORKERS-INSURANCE",
+    "scheme_name": "Karnataka State Gig Workers Insurance Scheme",
+    "department": "Labour Department, Government of Karnataka",
+    "category_id": 9,
+    "form_id": 30,
+    "form_title": "Karnataka Platform-Based Gig Workers Accident Insurance Enrolment",
+    "version": 1,
+    "fields_count": 5,
+    "fields": [
+      {
+        "name": "gig_platform_aggregator",
+        "label": "Platform / Delivery Aggregator Entity",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "partner_delivery_id",
+        "label": "Platform Delivery Partner / Rider ID",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "driving_licence_number",
+        "label": "Valid Two-Wheeler / Commercial Driving Licence (DL)",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "nominee_name",
+        "label": "Nominee Full Legal Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "nominee_relation",
+        "label": "Relationship with Nominee",
+        "type": "select",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 31,
+    "scheme_code": "KAR-LAB-AMBEDKAR-KARMIKA",
+    "scheme_name": "Ambedkar Karmika Sahaya Hastha",
+    "department": "Labour Department, Government of Karnataka",
+    "category_id": 9,
+    "form_id": 31,
+    "form_title": "Ambedkar Karmika Sahaya Hastha Unorganized Workers Smart Card",
+    "version": 1,
+    "fields_count": 3,
+    "fields": [
+      {
+        "name": "eshram_uan_number",
+        "label": "National e-Shram Universal Account Number (UAN)",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "informal_trade_type",
+        "label": "Unorganized Sector Category",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "workplace_city_taluk",
+        "label": "Primary City / Town of Work",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 32,
+    "scheme_code": "KAR-LAB-SWAVALAMBI-SARATHI",
+    "scheme_name": "Swavalambi Sarathi Scheme",
+    "department": "Social Welfare Department & Backward Classes Welfare Department",
+    "category_id": 4,
+    "form_id": 32,
+    "form_title": "Swavalambi Sarathi Commercial Vehicle 50-75% Subsidy Application",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "vehicle_type_chosen",
+        "label": "Proposed Commercial Vehicle Type",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "commercial_badge_dl_number",
+        "label": "Valid Commercial Transport Driving Licence Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "dealer_quotation_cost",
+        "label": "Total On-Road Vehicle Quotation Amount (Rs.)",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "authorized_dealership_name",
+        "label": "Vehicle Showroom / Dealer Name & Location",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 33,
+    "scheme_code": "KAR-LAB-SHRAMA-SHAKTHI",
+    "scheme_name": "Shrama Shakthi Loan Scheme",
+    "department": "Minorities Welfare Department, Government of Karnataka",
+    "category_id": 8,
+    "form_id": 33,
+    "form_title": "Shrama Shakthi Low-Interest Artisan Loan Scheme",
+    "version": 1,
+    "fields_count": 3,
+    "fields": [
+      {
+        "name": "traditional_craft_type",
+        "label": "Traditional Craft / Artisan Skill",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "years_of_craft_experience",
+        "label": "Years of Experience in Selected Trade",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "minority_certificate_no",
+        "label": "Religious Minority Declaration Certificate Number",
+        "type": "text",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 34,
+    "scheme_code": "KAR-LAB-BASAVA-AMBEDKAR-NIVAS",
+    "scheme_name": "Basava Vasati & Dr. B.R. Ambedkar Nivas Yojane",
+    "department": "Housing Department, Government of Karnataka",
+    "category_id": 9,
+    "form_id": 34,
+    "form_title": "Basava Vasati / Dr. B.R. Ambedkar Nivas Pucca Housing Grant",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "housing_scheme_category",
+        "label": "Specific Housing Scheme Stream",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "homeless_status",
+        "label": "Current Shelter Condition",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "ashraya_site_allotment_number",
+        "label": "Ashraya / Hakku Patra Site Number / E-Swathu ID",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "gram_panchayat_approval_resolution",
+        "label": "Gram Sabha Beneficiary Approval Resolution Date",
+        "type": "date",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  },
+  {
+    "scheme_id": 35,
+    "scheme_code": "KAR-LAB-GRUHA-AROGYA",
+    "scheme_name": "Gruha Arogya Yojana",
+    "department": "Department of Health and Family Welfare, Government of Karnataka",
+    "category_id": 6,
+    "form_id": 35,
+    "form_title": "Gruha Arogya Doorstep NCD Health Screening & Free Medication",
+    "version": 1,
+    "fields_count": 4,
+    "fields": [
+      {
+        "name": "chronic_conditions_reported",
+        "label": "Existing Non-Communicable Diseases (NCDs) Reported",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "current_blood_pressure_status",
+        "label": "Last Measured BP / Sugar Status",
+        "type": "select",
+        "required": true
+      },
+      {
+        "name": "primary_health_centre_jurisdiction",
+        "label": "Jurisdictional Primary Health Centre (PHC) Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "doorstep_delivery_elderly_status",
+        "label": "Is the patient bedridden or senior citizen aged 65+?",
+        "type": "radio",
+        "required": true
+      }
+    ],
+    "documents": [
+      {
+        "code": "AADHAAR_PROOF",
+        "name": "Applicant Aadhaar Identification Card",
+        "mandatory": true
+      },
+      {
+        "code": "DOMICILE_PROOF",
+        "name": "Karnataka State Domicile Certificate",
+        "mandatory": true
+      },
+      {
+        "code": "INCOME_CERT",
+        "name": "Income Certificate issued by Revenue Authority",
+        "mandatory": true
+      },
+      {
+        "code": "BANK_PASSBOOK",
+        "name": "Aadhaar Seeded Bank Account Passbook",
+        "mandatory": true
+      }
+    ]
+  }
+]

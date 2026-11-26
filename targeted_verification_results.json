@@ -1,0 +1,44 @@
+[
+  {
+    "test_id": "WF-1",
+    "title": "Additional Document Request, Upload & Scrutiny Lifecycle",
+    "status": "FAIL",
+    "details": "Expected status UNDER_REVIEW after upload, got DOCUMENTS_REQUIRED"
+  },
+  {
+    "test_id": "WF-2",
+    "title": "Beneficiary & Simulated Direct Benefit Transfer (DBT) Tracking",
+    "status": "PASS",
+    "details": "Beneficiary & DBT workflow verified: Beneficiary BEN-2026-SWD-C27056 (Sanction: INR 25000.0) tracked under transaction SIM-DBT-2026-6C2CCE07 (SUCCESSFUL)"
+  },
+  {
+    "test_id": "WF-3",
+    "title": "Platform Admin Permissions, Service Health & Mutation Guards (HTTP 403)",
+    "status": "FAIL",
+    "details": "Platform user monitoring failed: 404"
+  },
+  {
+    "test_id": "WF-4",
+    "title": "Comprehensive Notification Event Triggering & Citizen Feed",
+    "status": "PASS",
+    "details": "All 5 notification event classes verified in citizen stream (50 total notifications recorded in MySQL)"
+  },
+  {
+    "test_id": "WF-5",
+    "title": "Historical Dynamic Form Version Snapshots Preservation",
+    "status": "FAIL",
+    "details": "Publishing newer form version failed: 404 - {\"detail\":\"Not Found\"}"
+  },
+  {
+    "test_id": "WF-6",
+    "title": "Final ZIP Integrity, Extraction & Startup Instructions",
+    "status": "PASS",
+    "details": "ZIP archive verified: 0.72 MB, 184 files, clean extraction test passed, all entry points and docker instructions present"
+  },
+  {
+    "test_id": "WF-7",
+    "title": "Database Persistence & Skill Development Service Isolation",
+    "status": "PASS",
+    "details": "Data isolation confirmed: 35 welfare schemes & 37 applications safe in nagriksetu_swd. Skill containers untouched: nagriksetu-skill-rabbitmq (Up 5 hours (healthy))"
+  }
+]

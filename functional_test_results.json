@@ -1,0 +1,86 @@
+[
+  {
+    "test": "Backend /health endpoint",
+    "expected": "HTTP 200, status=healthy",
+    "actual": "HTTP 200, {'service': 'swd-service', 'status': 'healthy', 'database': '', 'version': '2.1.0', 'environment': 'production'}",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Frontend Web Interface (Port 5174)",
+    "expected": "HTTP 200 OK",
+    "actual": "HTTP 200",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Citizen Login (mukesh2345@gmail.com)",
+    "expected": "JWT Token + Citizen ID issued",
+    "actual": "Token issued, citizen_id=CIT-KA-2026-DE2B4F",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Welfare Admin Login (welfareadmin@example.com)",
+    "expected": "JWT Token + Role authorized",
+    "actual": "Token issued, role=GOVERNMENT_WELFARE_ADMIN",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Platform Admin Login (platformadmin@example.com)",
+    "expected": "JWT Token + Platform Admin role",
+    "actual": "Token issued, role=PLATFORM_ADMIN",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Public Scheme Catalogue (Shakti excluded)",
+    "expected": "28 Karnataka schemes, 0 Shakti",
+    "actual": "28 schemes, Shakti included=False",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Application Tracking (SWD-APP-2026-98E64D)",
+    "expected": "Application found with status UNDER_REVIEW",
+    "actual": "App found=True, status=UNDER_REVIEW",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Pure-Python PDF Receipt Generation",
+    "expected": "HTTP 200, application/pdf, %PDF-1.4 header",
+    "actual": "HTTP 200, size=1805 bytes",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Welfare Admin Dashboard Metrics",
+    "expected": "Dynamic MySQL counters (>=44 apps, 28 schemes)",
+    "actual": "total_applications=44, schemes=28",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Platform Admin Monitoring APIs",
+    "expected": "User list >= 39, Audit logs retrieved",
+    "actual": "Users=40, Audit logs=50",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "Grievance Submission & Administrative Resolution",
+    "expected": "Grievance status transitioned to RESOLVED",
+    "actual": "Ticket ID=53, final status=RESOLVED",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "test": "RBAC Access Restriction (Citizen on Admin Route)",
+    "expected": "HTTP 403 Forbidden",
+    "actual": "HTTP 403",
+    "status": "PASS",
+    "details": ""
+  }
+]

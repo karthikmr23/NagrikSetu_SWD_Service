@@ -1,0 +1,21 @@
+=== TRACE FOR APPLICATION SWD-APP-2026-98E64D ===
+
+1. Citizen Login (mukesh2345@gmail.com) -> HTTP 200
+2. Citizen Tracking API (GET /api/swd/applications/CIT-KA-2026-DE2B4F) -> HTTP 200
+   App Number: SWD-APP-2026-98E64D
+   Scheme: Thayi Bhagya & Prasoothi Araike Scheme
+   Status: UNDER_REVIEW
+   Admin Remarks: Not satisfied with the provided documents, please provide all the relevant documents 
+   History Steps: 2
+     - Action: SUBMISSION | From: None | To: SUBMITTED | By: CIT-KA-2026-DE2B4F | Remarks: Citizen submitted online scheme application dossier.
+     - Action: OFFICER_REVIEW | From: SUBMITTED | To: UNDER_REVIEW | By: Government Welfare Administrator | Remarks: Not satisfied with the provided documents, please provide all the relevant documents 
+
+3. Welfare Admin Login (welfareadmin@example.com) -> HTTP 200, Role: GOVERNMENT_WELFARE_ADMIN
+4. Welfare Admin Scrutiny Queue API (GET /api/swd/admin/applications) -> HTTP 200
+   Found Mukesh Application in Queue: SWD-APP-2026-98E64D
+   Applicant: Mukesh
+   Primary Key ID: 36
+   Scheme ID: 13
+   Status: UNDER_REVIEW
+   Uploaded Documents Count: 1
+     - Doc ID: 10 | Code: MARKSHEET | Name: CCC Lab4 2023UG000161.pdf
