@@ -94,7 +94,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pymysql cryptography
 
-      - name: Validate and Apply DDL Schema Files via Python (handles UTF-16LE encoding cleanly)
+      - name: Validate and Apply DDL Schema Files via Python
         run: |
           python -c "
           import os, pymysql
@@ -108,55 +108,38 @@ jobs:
           )
           cursor = conn.cursor()
 
-          # 1. 01_create_database.sql
+          # 1. Ensure database creation
           with open('database/01_create_database.sql', 'r', encoding='utf-8') as f:
-              sql = f.read()
-              for statement in sql.split(';'):
+              for statement in f.read().split(';'):
                   s = statement.strip()
                   if s:
                       cursor.execute(s)
-          print('Applied 01_create_database.sql')
 
           conn.select_db('nagriksetu_swd')
+          cursor.execute('SET FOREIGN_KEY_CHECKS = 0;')
 
-          # 2. swd_db_setup.sql (UTF-16LE encoded MySQL dump)
-          with open('database/swd_db_setup.sql', 'r', encoding='utf-16') as f:
-              sql = f.read()
-              # Execute clean table creation and initial setup statements
-              statements = sql.split(';\n')
-              for s in statements:
-                  stmt = s.strip()
-                  if stmt and not stmt.startswith('/*') and not stmt.startswith('--'):
-                      try:
-                          cursor.execute(stmt)
-                      except Exception as e:
-                          pass
-          print('Applied swd_db_setup.sql')
+          # 2. Extract and create all 19 tables from schema export
+          with open('database/swd_export_from_docker.sql', 'r', encoding='utf-8', errors='ignore') as f:
+              lines = f.readlines()
 
-          # 3. create_offices_table.sql
-          with open('database/create_offices_table.sql', 'r', encoding='utf-8') as f:
-              sql = f.read()
-              for s in sql.split(';'):
-                  stmt = s.strip()
-                  if stmt:
-                      try:
-                          cursor.execute(stmt)
-                      except Exception as e:
-                          pass
-          print('Applied create_offices_table.sql')
+          tables = []
+          inside = False
+          curr = []
+          for l in lines:
+              if l.startswith('CREATE TABLE'):
+                  inside = True
+                  curr = [l]
+              elif inside:
+                  curr.append(l)
+                  if l.strip().endswith(';') and 'ENGINE=' in l:
+                      inside = False
+                      tables.append(''.join(curr))
 
-          # 4. seed_finder_rules.sql
-          with open('database/seed_finder_rules.sql', 'r', encoding='utf-8') as f:
-              sql = f.read()
-              for s in sql.split(';'):
-                  stmt = s.strip()
-                  if stmt:
-                      try:
-                          cursor.execute(stmt)
-                      except Exception as e:
-                          pass
-          print('Applied seed_finder_rules.sql')
+          for ddl in tables:
+              cursor.execute(ddl)
+          print(f'Successfully created {len(tables)} tables from DDL.')
 
+          cursor.execute('SET FOREIGN_KEY_CHECKS = 1;')
           cursor.close()
           conn.close()
           "
@@ -173,7 +156,7 @@ jobs:
           inspector = inspect(engine)
           tables = inspector.get_table_names()
           print(f'Successfully connected to MySQL 8.0! Verified {len(tables)} tables: {tables}')
-          assert len(tables) >= 10, f'Expected at least 10 tables in nagriksetu_swd, found {len(tables)}'
+          assert len(tables) >= 15, f'Expected at least 15 tables in nagriksetu_swd, found {len(tables)}'
           "
 
   docker-compose-check:
