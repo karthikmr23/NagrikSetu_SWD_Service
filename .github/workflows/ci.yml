@@ -96,7 +96,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pymysql cryptography
 
-      - name: Validate and Apply DDL Schema Files via Python
+      - name: Validate and Apply Clean DDL Schema File via Python
         run: |
           python -c "
           import os, pymysql
@@ -110,38 +110,16 @@ jobs:
           )
           cursor = conn.cursor()
 
-          # 1. Ensure database creation
-          with open('database/01_create_database.sql', 'r', encoding='utf-8') as f:
-              for statement in f.read().split(';'):
-                  s = statement.strip()
-                  if s:
-                      cursor.execute(s)
+          # Apply clean schema fixture containing all 19 tables with zero personal records
+          with open('database/swd_clean_schema.sql', 'r', encoding='utf-8') as f:
+              sql = f.read()
 
-          conn.select_db('nagriksetu_swd')
-          cursor.execute('SET FOREIGN_KEY_CHECKS = 0;')
+          for stmt in sql.split(';'):
+              s = stmt.strip()
+              if s:
+                  cursor.execute(s)
 
-          # 2. Extract and create all 19 tables from schema export
-          with open('database/swd_export_from_docker.sql', 'r', encoding='utf-8', errors='ignore') as f:
-              lines = f.readlines()
-
-          tables = []
-          inside = False
-          curr = []
-          for l in lines:
-              if l.startswith('CREATE TABLE'):
-                  inside = True
-                  curr = [l]
-              elif inside:
-                  curr.append(l)
-                  if l.strip().endswith(';') and 'ENGINE=' in l:
-                      inside = False
-                      tables.append(''.join(curr))
-
-          for ddl in tables:
-              cursor.execute(ddl)
-          print(f'Successfully created {len(tables)} tables from DDL.')
-
-          cursor.execute('SET FOREIGN_KEY_CHECKS = 1;')
+          print('Successfully initialized all 19 clean schema tables.')
           cursor.close()
           conn.close()
           "
@@ -158,7 +136,7 @@ jobs:
           inspector = inspect(engine)
           tables = inspector.get_table_names()
           print(f'Successfully connected to MySQL 8.0! Verified {len(tables)} tables: {tables}')
-          assert len(tables) >= 15, f'Expected at least 15 tables in nagriksetu_swd, found {len(tables)}'
+          assert len(tables) >= 19, f'Expected 19 tables in nagriksetu_swd, found {len(tables)}'
           "
 
   docker-compose-check:
