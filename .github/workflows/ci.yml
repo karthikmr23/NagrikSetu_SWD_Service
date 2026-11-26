@@ -61,6 +61,7 @@ jobs:
         working-directory: backend
         env:
           ENV: testing
+          DATABASE_URL: sqlite:///./test_ci.db
         run: |
           pytest -v tests/test_citizen_auth.py tests/test_profile_management.py tests/test_rbac_security.py
 
