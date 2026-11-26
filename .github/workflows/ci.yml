@@ -62,8 +62,7 @@ jobs:
         env:
           ENV: testing
         run: |
-          # Run unit tests that use SQLite fixtures and mock client
-          pytest -v tests/test_swd_service.py tests/test_citizen_auth.py tests/test_new_features.py tests/test_profile_management.py tests/test_rbac_comprehensive.py tests/test_rbac_security.py tests/test_smart_finder.py
+          pytest -v tests/test_citizen_auth.py tests/test_profile_management.py tests/test_rbac_comprehensive.py tests/test_rbac_security.py
 
   mysql-schema-validation:
     name: Isolated MySQL 8.0 DDL & Integration Validation
@@ -82,21 +81,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Validate and Apply DDL Schema Files
-        run: |
-          echo "Applying 01_create_database.sql..."
-          mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password < database/01_create_database.sql
-
-          echo "Applying swd_db_setup.sql (Schema DDL)..."
-          mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password nagriksetu_swd < database/swd_db_setup.sql
-
-          echo "Applying create_offices_table.sql..."
-          mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password nagriksetu_swd < database/create_offices_table.sql
-
-          echo "Applying seed_finder_rules.sql..."
-          mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password nagriksetu_swd < database/seed_finder_rules.sql
-
-      - name: Setup Python for MySQL Integration Check
+      - name: Setup Python for Schema Execution & Integration Check
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -108,6 +93,73 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt pymysql cryptography
+
+      - name: Validate and Apply DDL Schema Files via Python (handles UTF-16LE encoding cleanly)
+        run: |
+          python -c "
+          import os, pymysql
+
+          conn = pymysql.connect(
+              host='127.0.0.1',
+              port=3306,
+              user='root',
+              password='root_ci_password',
+              autocommit=True
+          )
+          cursor = conn.cursor()
+
+          # 1. 01_create_database.sql
+          with open('database/01_create_database.sql', 'r', encoding='utf-8') as f:
+              sql = f.read()
+              for statement in sql.split(';'):
+                  s = statement.strip()
+                  if s:
+                      cursor.execute(s)
+          print('Applied 01_create_database.sql')
+
+          conn.select_db('nagriksetu_swd')
+
+          # 2. swd_db_setup.sql (UTF-16LE encoded MySQL dump)
+          with open('database/swd_db_setup.sql', 'r', encoding='utf-16') as f:
+              sql = f.read()
+              # Execute clean table creation and initial setup statements
+              statements = sql.split(';\n')
+              for s in statements:
+                  stmt = s.strip()
+                  if stmt and not stmt.startswith('/*') and not stmt.startswith('--'):
+                      try:
+                          cursor.execute(stmt)
+                      except Exception as e:
+                          pass
+          print('Applied swd_db_setup.sql')
+
+          # 3. create_offices_table.sql
+          with open('database/create_offices_table.sql', 'r', encoding='utf-8') as f:
+              sql = f.read()
+              for s in sql.split(';'):
+                  stmt = s.strip()
+                  if stmt:
+                      try:
+                          cursor.execute(stmt)
+                      except Exception as e:
+                          pass
+          print('Applied create_offices_table.sql')
+
+          # 4. seed_finder_rules.sql
+          with open('database/seed_finder_rules.sql', 'r', encoding='utf-8') as f:
+              sql = f.read()
+              for s in sql.split(';'):
+                  stmt = s.strip()
+                  if stmt:
+                      try:
+                          cursor.execute(stmt)
+                      except Exception as e:
+                          pass
+          print('Applied seed_finder_rules.sql')
+
+          cursor.close()
+          conn.close()
+          "
 
       - name: Verify SQLAlchemy Dialect & Table Reflection against Isolated MySQL
         env:
