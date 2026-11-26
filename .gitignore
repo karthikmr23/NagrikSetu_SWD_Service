@@ -4,8 +4,10 @@
 .env.*.local
 *.env
 
-# Sensitive Database Dumps (Option A: Exclude personal data and password hashes)
+# Sensitive Database Dumps & Exports (Quarantined)
 database/nagriksetu_swd_latest_dump.sql
+database/swd_export_from_docker.sql
+database/swd_migration_backup_*.sql
 *.dump
 *.sql.gz
 

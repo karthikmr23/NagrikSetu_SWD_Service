@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js 20
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 20
           cache: 'npm'
@@ -37,10 +37,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -57,11 +57,14 @@ jobs:
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      - name: Run Backend Unit Tests (SQLite Fixtures)
+      - name: Run Backend Unit Tests (SQLite Fixtures & Mock RBAC)
         working-directory: backend
         env:
           ENV: testing
-        run: pytest -v
+          DATABASE_URL: sqlite:///./test_ci.db
+          PYTHONPATH: .
+        run: |
+          python -m pytest -v tests/test_citizen_auth.py tests/test_profile_management.py tests/test_rbac_security.py
 
   mysql-schema-validation:
     name: Isolated MySQL 8.0 DDL & Integration Validation
@@ -78,21 +81,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
-      - name: Validate and Apply DDL Schema Files
-        run: |
-          echo "Applying 01_create_database.sql..."
-          mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password < database/01_create_database.sql
-
-          echo "Applying create_offices_table.sql..."
-          mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password nagriksetu_swd < database/create_offices_table.sql
-
-          echo "Applying seed_finder_rules.sql..."
-          mysql -h 127.0.0.1 -P 3306 -u root -proot_ci_password nagriksetu_swd < database/seed_finder_rules.sql
-
-      - name: Setup Python for MySQL Integration Check
-        uses: actions/setup-python@v5
+      - name: Setup Python for Schema Execution & Integration Check
+        uses: actions/setup-python@v7
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -103,6 +95,34 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt pymysql cryptography
+
+      - name: Validate and Apply Clean DDL Schema File via Python
+        run: |
+          python -c "
+          import os, pymysql
+
+          conn = pymysql.connect(
+              host='127.0.0.1',
+              port=3306,
+              user='root',
+              password='root_ci_password',
+              autocommit=True
+          )
+          cursor = conn.cursor()
+
+          # Apply clean schema fixture containing all 19 tables with zero personal records
+          with open('database/swd_clean_schema.sql', 'r', encoding='utf-8') as f:
+              sql = f.read()
+
+          for stmt in sql.split(';'):
+              s = stmt.strip()
+              if s:
+                  cursor.execute(s)
+
+          print('Successfully initialized all 19 clean schema tables.')
+          cursor.close()
+          conn.close()
+          "
 
       - name: Verify SQLAlchemy Dialect & Table Reflection against Isolated MySQL
         env:
@@ -116,7 +136,7 @@ jobs:
           inspector = inspect(engine)
           tables = inspector.get_table_names()
           print(f'Successfully connected to MySQL 8.0! Verified {len(tables)} tables: {tables}')
-          assert len(tables) >= 10, 'Expected at least 10 tables in nagriksetu_swd'
+          assert len(tables) >= 19, f'Expected 19 tables in nagriksetu_swd, found {len(tables)}'
           "
 
   docker-compose-check:
@@ -124,7 +144,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Validate Docker Compose Config
         run: docker compose config

@@ -1,3 +1,7 @@
+# NagrikSetu SWD - Manual Delivery Readiness Verification Gate
+# Workflow: Continuous Delivery (CD) Dry-Run Gate
+# Mode: Strictly manual execution via workflow_dispatch
+# Safety: Performs read-only integrity checks. Zero automatic deployments.
 name: NagrikSetu SWD CD Delivery Readiness
 
 on:
@@ -18,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Verify Application Integrity
         run: |
