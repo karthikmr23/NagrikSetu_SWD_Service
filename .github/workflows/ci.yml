@@ -4,76 +4,179 @@ on:
   push:
     branches:
       - main
-      - feature/**
+      - feature/swd-service-setup
   pull_request:
     branches:
       - main
 
 jobs:
   frontend-build:
-    name: Frontend Build & Typecheck
+    name: Frontend Build & Typecheck (Node 24)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 24
         uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
 
-      - name: Install Frontend Dependencies
+      - name: Install dependencies
         working-directory: frontend
         run: npm ci
 
-      - name: TypeScript & Build Check
+      - name: Check TypeScript typing & build production bundle
         working-directory: frontend
-        run: npm run build
+        run: |
+          npm run type-check
+          npm run build
 
-  backend-checks:
+  backend-test:
     name: Backend Syntax, Lint & Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Setup Python 3.11
+      - name: Setup Python
         uses: actions/setup-python@v7
         with:
           python-version: '3.11'
           cache: 'pip'
           cache-dependency-path: backend/requirements.txt
 
-      - name: Install Backend Dependencies
+      - name: Install dependencies
         working-directory: backend
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt pytest httpx flake8
+          pip install -r requirements.txt flake8 pytest httpx cryptography pymysql
 
-      - name: Python Syntax & Lint Check
+      - name: Lint and Syntax Validation
         working-directory: backend
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
+      - name: Generate Disposable Credentials & Initialize Test Admin
+        working-directory: backend
+        run: |
+          python -c "
+          import os, secrets
+          from app.database.connection import Base, engine, SessionLocal
+          from app.models import User
+          from app.core.security import get_password_hash
+
+          # 1. Initialize isolated test database schema
+          Base.metadata.create_all(bind=engine)
+
+          # 2. Generate fresh, disposable credentials for this CI run
+          jwt_secret = secrets.token_hex(32)
+          admin_email = f'admin_{secrets.token_hex(4)}@swd-ci.local'
+          admin_pass = f'AdminCI@{secrets.token_hex(6)}!'
+
+          # 3. Seed test administrator using the exact generated credentials
+          db = SessionLocal()
+          existing = db.query(User).filter(User.citizen_id == 'ADM-CI-001').first()
+          if existing:
+              existing.email = admin_email
+              existing.password_hash = get_password_hash(admin_pass)
+          else:
+              admin = User(
+                  citizen_id='ADM-CI-001',
+                  email=admin_email,
+                  password_hash=get_password_hash(admin_pass),
+                  full_name='CI Admin Tester',
+                  role='PLATFORM_ADMIN',
+                  is_active=True
+              )
+              db.add(admin)
+          db.commit()
+          db.close()
+          print('Successfully seeded test admin into SQLite test database.')
+
+          # 4. Mask sensitive values and securely export them to GITHUB_ENV
+          env_file = os.environ.get('GITHUB_ENV')
+          if env_file:
+              print(f'::add-mask::{jwt_secret}')
+              print(f'::add-mask::{admin_pass}')
+              with open(env_file, 'a', encoding='utf-8') as f:
+                  f.write(f'JWT_SECRET={jwt_secret}\n')
+                  f.write(f'ADMIN_EMAIL={admin_email}\n')
+                  f.write(f'ADMIN_PASSWORD={admin_pass}\n')
+              print('Securely exported masked disposable credentials to GITHUB_ENV.')
+          "
+        env:
+          ENVIRONMENT: testing
+          DATABASE_URL: sqlite:///./test_ci.db
+          PYTHONPATH: .
+
       - name: Run Backend Unit Tests (SQLite Fixtures & Mock RBAC)
         working-directory: backend
         env:
-          ENV: testing
+          ENVIRONMENT: testing
           DATABASE_URL: sqlite:///./test_ci.db
           PYTHONPATH: .
         run: |
-          python -m pytest -v tests/test_citizen_auth.py tests/test_profile_management.py tests/test_rbac_security.py
+          # 1. Verify custom JWT_SECRET and disposable admin credentials in auth flow
+          python -c "
+          import os
+          from app.core.config import settings
+          from app.database.connection import SessionLocal
+          from app.models import User
+          from app.core.security import create_access_token, decode_access_token
+          from app.main import app
+          from fastapi.testclient import TestClient
 
-  mysql-schema-validation:
-    name: Isolated MySQL 8.0 DDL & Integration Validation
+          jwt_sec = os.environ.get('JWT_SECRET')
+          adm_email = os.environ.get('ADMIN_EMAIL')
+          adm_pass = os.environ.get('ADMIN_PASSWORD')
+          assert jwt_sec and adm_email and adm_pass, 'Missing disposable credentials in environment'
+
+          # Verify ENVIRONMENT is testing and JWT_SECRET is active in settings
+          assert settings.ENVIRONMENT == 'testing', f'Expected ENVIRONMENT testing, got {settings.ENVIRONMENT}'
+          assert settings.JWT_SECRET == jwt_sec, 'settings.JWT_SECRET did not match environment JWT_SECRET'
+
+          # Verify admin user in database matches generated credentials
+          db = SessionLocal()
+          admin_user = db.query(User).filter(User.citizen_id == 'ADM-CI-001').first()
+          assert admin_user is not None, 'Test admin user ADM-CI-001 was not found in database'
+          assert admin_user.email == adm_email, f'Admin email mismatch: {admin_user.email} != {adm_email}'
+          db.close()
+
+          # Test login endpoint using exact generated admin credentials
+          client = TestClient(app)
+          res = client.post('/api/swd/auth/login', json={'email': adm_email, 'password': adm_pass})
+          assert res.status_code == 200, f'Admin login failed: {res.text}'
+          token = res.json()['access_token']
+          assert token, 'Access token missing in login response'
+
+          # Verify token decoding using the active JWT_SECRET
+          payload = decode_access_token(token)
+          assert payload['email'] == adm_email, 'Decoded token email mismatch'
+          assert payload['role'] == 'PLATFORM_ADMIN', 'Decoded token role mismatch'
+
+          # Verify authenticated API access with custom JWT token
+          headers = {'Authorization': f'Bearer {token}'}
+          stats_res = client.get('/api/swd/admin/categories/stats', headers=headers)
+          assert stats_res.status_code == 200, f'Admin protected endpoint failed: {stats_res.text}'
+          print('Successfully verified disposable credentials & JWT_SECRET in live auth flow.')
+          "
+
+          # 2. Run unit test suite
+          pytest tests/test_citizen_auth.py tests/test_profile_management.py tests/test_rbac_security.py tests/test_rbac_comprehensive.py -v
+
+  mysql-integration:
+    name: Isolated MySQL 8.0 DDL & Least-Privilege Integration
     runs-on: ubuntu-latest
+    env:
+      CI_MYSQL_ROOT_PASSWORD: ${{ secrets.CI_MYSQL_ROOT_PASSWORD }}
     services:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: root_ci_password
+          MYSQL_ROOT_PASSWORD: ${{ secrets.CI_MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: nagriksetu_swd
         ports:
           - 3306:3306
@@ -83,34 +186,48 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Setup Python for Schema Execution & Integration Check
+      - name: Verify Mandatory CI_MYSQL_ROOT_PASSWORD Secret
+        run: |
+          if [ -z "$CI_MYSQL_ROOT_PASSWORD" ]; then
+            echo "::error::Mandatory GitHub Secret CI_MYSQL_ROOT_PASSWORD is missing or empty. CI cannot proceed."
+            exit 1
+          fi
+          echo "Mandatory CI_MYSQL_ROOT_PASSWORD is present."
+
+      - name: Setup Python
         uses: actions/setup-python@v7
         with:
           python-version: '3.11'
           cache: 'pip'
           cache-dependency-path: backend/requirements.txt
 
-      - name: Install Backend Requirements
+      - name: Install PyMySQL & SQLAlchemy
         working-directory: backend
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt pymysql cryptography
 
-      - name: Validate and Apply Clean DDL Schema File via Python
+      - name: Apply Clean DDL Schema, Create Disposable App User & Export Credentials
+        env:
+          MYSQL_ROOT_PW: ${{ secrets.CI_MYSQL_ROOT_PASSWORD }}
         run: |
           python -c "
-          import os, pymysql
+          import os, secrets, pymysql
+
+          root_pw = os.environ.get('MYSQL_ROOT_PW', '')
+          if not root_pw:
+              raise ValueError('MYSQL_ROOT_PW environment variable is empty')
 
           conn = pymysql.connect(
               host='127.0.0.1',
               port=3306,
               user='root',
-              password='root_ci_password',
+              password=root_pw,
               autocommit=True
           )
           cursor = conn.cursor()
 
-          # Apply clean schema fixture containing all 19 tables with zero personal records
+          # 1. Apply clean schema fixture containing all 19 tables with zero personal records
           with open('database/swd_clean_schema.sql', 'r', encoding='utf-8') as f:
               sql = f.read()
 
@@ -118,25 +235,90 @@ jobs:
               s = stmt.strip()
               if s:
                   cursor.execute(s)
+          print('Successfully applied database/swd_clean_schema.sql')
 
-          print('Successfully initialized all 19 clean schema tables.')
+          # 2. Create disposable application credentials with least privilege on nagriksetu_swd
+          disp_user = f'swd_app_{secrets.token_hex(4)}'
+          disp_pass = secrets.token_hex(16)
+
+          cursor.execute(f\"CREATE USER '{disp_user}'@'%' IDENTIFIED BY '{disp_pass}';\")
+          cursor.execute(f\"GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER ON \`nagriksetu_swd\`.* TO '{disp_user}'@'%';\")
+          cursor.execute(\"FLUSH PRIVILEGES;\")
+          print(f'Successfully created disposable database user: {disp_user}')
+
           cursor.close()
           conn.close()
+
+          # 3. Securely export disposable user and password to GITHUB_ENV
+          env_file = os.environ.get('GITHUB_ENV')
+          if env_file:
+              print(f'::add-mask::{disp_pass}')
+              with open(env_file, 'a', encoding='utf-8') as f:
+                  f.write(f'DISP_DB_USER={disp_user}\n')
+                  f.write(f'DISP_DB_PASS={disp_pass}\n')
+              print('Securely exported masked disposable DB credentials to GITHUB_ENV.')
           "
 
-      - name: Verify SQLAlchemy Dialect & Table Reflection against Isolated MySQL
-        env:
-          DATABASE_URL: mysql+pymysql://root:root_ci_password@127.0.0.1:3306/nagriksetu_swd
+      - name: Verify SQLAlchemy Reflection & Least-Privilege Enforcement
         run: |
           python -c "
-          import os
-          from sqlalchemy import create_engine, inspect
-          url = os.environ['DATABASE_URL']
-          engine = create_engine(url)
+          import os, re
+          from sqlalchemy import create_engine, inspect, text, URL
+          from sqlalchemy.exc import OperationalError, ProgrammingError
+
+          disp_user = os.environ.get('DISP_DB_USER', '')
+          disp_pass = os.environ.get('DISP_DB_PASS', '')
+          assert disp_user and disp_pass, 'Disposable database credentials missing in environment'
+
+          # 1. Connect safely using SQLAlchemy URL.create() with disposable application user (NEVER root)
+          app_db_url = URL.create(
+              drivername='mysql+pymysql',
+              username=disp_user,
+              password=disp_pass,
+              host='127.0.0.1',
+              port=3306,
+              database='nagriksetu_swd'
+          )
+          engine = create_engine(app_db_url)
           inspector = inspect(engine)
           tables = inspector.get_table_names()
-          print(f'Successfully connected to MySQL 8.0! Verified {len(tables)} tables: {tables}')
-          assert len(tables) >= 19, f'Expected 19 tables in nagriksetu_swd, found {len(tables)}'
+          print(f'Disposable user {disp_user} connected successfully!')
+          print(f'Verified {len(tables)} tables: {tables}')
+          assert len(tables) == 19, f'Expected exactly 19 tables in nagriksetu_swd, found {len(tables)}'
+
+          # 2. Test permitted least-privilege operations on nagriksetu_swd
+          with engine.begin() as conn:
+              conn.execute(text('CREATE TABLE swd_least_priv_probe (id INT PRIMARY KEY, tag VARCHAR(50));'))
+              conn.execute(text(\"INSERT INTO swd_least_priv_probe (id, tag) VALUES (1, 'probe_test');\"))
+              res = conn.execute(text('SELECT tag FROM swd_least_priv_probe WHERE id = 1;')).scalar()
+              assert res == 'probe_test', 'Permitted SELECT operation failed'
+              conn.execute(text('DROP TABLE swd_least_priv_probe;'))
+          print('Permitted operations (CREATE, INSERT, SELECT, DROP) succeeded on nagriksetu_swd.')
+
+          # 3. Verify privileged operations outside nagriksetu_swd are strictly DENIED
+          denied = False
+          with engine.connect() as probe_conn:
+              try:
+                  with probe_conn.begin():
+                      probe_conn.execute(text('CREATE DATABASE unauthorized_probe_db;'))
+              except (OperationalError, ProgrammingError):
+                  denied = True
+                  print('Expected permission denial caught cleanly.')
+
+              assert denied, 'Security violation: Disposable user was able to execute privileged CREATE DATABASE'
+              print('Privileged cross-database operation was successfully DENIED (Least-Privilege verified).')
+
+              # Verify connection remains healthy and usable after the denied operation
+              usable_res = probe_conn.execute(text('SELECT 1;')).scalar()
+              assert usable_res == 1, 'Database connection became unusable after denied permission attempt'
+              print('Confirmed database connection remains completely usable after denied operation.')
+
+          # 4. Confirm clean schema fixture has zero personal records
+          with open('database/swd_clean_schema.sql', 'r', encoding='utf-8') as f:
+              schema_content = f.read()
+          insert_matches = re.findall(r'INSERT\s+INTO', schema_content, re.IGNORECASE)
+          assert len(insert_matches) == 0, f'Found {len(insert_matches)} INSERT INTO statements in clean schema fixture'
+          print('Verified clean schema fixture contains exactly 0 INSERT INTO statements.')
           "
 
   docker-compose-check:
@@ -146,5 +328,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Validate Docker Compose Config
-        run: docker compose config
+      - name: Validate Docker Compose Configuration
+        run: |
+          docker compose config
