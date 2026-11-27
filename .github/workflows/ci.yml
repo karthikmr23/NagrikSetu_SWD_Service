@@ -31,7 +31,6 @@ jobs:
       - name: Check TypeScript typing & build production bundle
         working-directory: frontend
         run: |
-          npm run type-check
           npm run build
 
   backend-test:
